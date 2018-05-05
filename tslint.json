@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "semicolon": true,
+    "import-name": [
+      false
+    ],
+    "variable-name": [
+      false
+    ],
+    "no-unused-variable": true,
+    "no-unused-expression": true
+  }
+}
