@@ -14,6 +14,7 @@
     "@types/node-fetch": "^1.6.9",
     "jest": "^22.4.3",
     "ts-jest": "^22.4.4",
+    "ts-node": "^6.0.3",
     "tslint": "^5.10.0",
     "typescript": "^2.8.3"
   },
@@ -23,7 +24,9 @@
   },
   "scripts": {
     "test": "jest",
-    "pretest": "tslint --project . && tsc --project ."
+    "dump": "yarn build && ts-node scripts/dump",
+    "build": "tslint --project . && tsc --project .",
+    "pretest": "yarn build"
   },
   "jest": {
     "transform": {

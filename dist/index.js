@@ -114,7 +114,7 @@ function getItemProps(url, $page, html) {
             .toArray()
             .map(function (el) { return cheerio_1.default(el).attr('data-src'); }),
         private: /[" ]+privateOffer[": ]+true/.test(html),
-        deposit: util_1.getText($page('.is24qa-kaution-o-genossenschaftsanteile-label').next()),
+        deposit: util_1.getText($page('.is24qa-kaution-o-genossenschaftsanteile')),
         address: util_1.getText($page('.address-block').first()),
         coldRent: util_1.getText($page('.is24qa-kaltmiete').first()),
         totalRent: util_1.getText($page('.is24qa-gesamtmiete')),
