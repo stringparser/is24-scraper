@@ -2,6 +2,7 @@
 export type ResultListItem = {
   id: string;
   url: string;
+  availableFrom: string;
 };
 
 export type ResultList = {
@@ -9,5 +10,8 @@ export type ResultList = {
   paging: {
     next: string;
     previous: string;
+    pageSize: number;
+    pageNumber: number;
+    numberOfPages: number;
   };
 };

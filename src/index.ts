@@ -48,8 +48,10 @@ async function is24ListScraper(
       ,
       previous: previousPageBaseURL
         ? `${baseURL}${previousPageBaseURL}`
-        : ''
-      ,
+        : '',
+      pageSize: $listItems.length,
+      pageNumber: $page('#pageSelection select option[selected]').index(),
+      numberOfPages: $page('#pageSelection select option').length
     }
   };
 }

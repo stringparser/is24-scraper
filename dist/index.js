@@ -93,6 +93,9 @@ function is24ListScraper(listURL, options) {
                                 previous: previousPageBaseURL
                                     ? "" + constants_1.baseURL + previousPageBaseURL
                                     : '',
+                                pageSize: $listItems.length,
+                                pageNumber: $page('#pageSelection select option[selected]').index(),
+                                numberOfPages: $page('#pageSelection select option').length
                             }
                         }];
             }
