@@ -3,9 +3,21 @@ import fs from 'fs';
 import API from '../src';
 import { defaultSearch } from '../src/constants';
 
-(async function() {
-  const stream = fs.createWriteStream('dump.json');
-  const result = await API(defaultSearch);
+const stream = fs.createWriteStream('dump.md');
 
-  stream.write(JSON.stringify(result, null, 2));
+stream.write('availableFrom | url \n');
+stream.write('----|-------------- \n');
+
+(async function whilst(url = defaultSearch) {
+  const result = await API(url);
+
+  result.items.map(el => {
+    stream.write(
+      `${el.availableFrom || 'sofort'} | ${el.url}\n`
+    );
+  });
+
+  if (result.paging.next) {
+    whilst(result.paging.next);
+  }
 })();
