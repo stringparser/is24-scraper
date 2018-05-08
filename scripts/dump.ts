@@ -9,7 +9,7 @@ const stream = {
   json: fs.createWriteStream('dump.json')
 };
 
-const results: Partial<ResultListItem>[] = [];
+const results: ResultListItem[] = [];
 
 stream.md.write('availableFrom | url \n');
 stream.md.write('----|-------------- \n');
