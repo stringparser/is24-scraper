@@ -72,7 +72,7 @@ function getItemProps(url: string, $page: CheerioStatic, html: string) {
       .toArray()
       .map(el => $(el).attr('data-src'))
     ,
-    private: /[" ]+privateOffer[": ]+true/.test(html),
+    private: /["\s]+privateOffer[":\s]+true/.test(html),
     deposit: getText($page('.is24qa-kaution-o-genossenschaftsanteile')),
     address: getText($page('.address-block').first()),
     coldRent: getText($page('.is24qa-kaltmiete').first()),

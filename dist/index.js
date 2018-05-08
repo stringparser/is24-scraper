@@ -116,7 +116,7 @@ function getItemProps(url, $page, html) {
         images: $page('#is24-main .sp-slide img.sp-image')
             .toArray()
             .map(function (el) { return cheerio_1.default(el).attr('data-src'); }),
-        private: /[" ]+privateOffer[": ]+true/.test(html),
+        private: /["\s]+privateOffer[":\s]+true/.test(html),
         deposit: util_1.getText($page('.is24qa-kaution-o-genossenschaftsanteile')),
         address: util_1.getText($page('.address-block').first()),
         coldRent: util_1.getText($page('.is24qa-kaltmiete').first()),
