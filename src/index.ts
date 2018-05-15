@@ -2,9 +2,9 @@
 import $ from 'cheerio';
 import fetch from 'node-fetch';
 
-import { getText } from './util';
 import { baseURL } from './constants';
 import { ResultList } from './types';
+import { getText, getNumber, getQuarter } from './util';
 
 async function is24ListScraper(
   listURL: string,
@@ -72,16 +72,17 @@ function getItemProps(url: string, $page: CheerioStatic, html: string) {
       .toArray()
       .map(el => $(el).attr('data-src'))
     ,
+    quarter: getQuarter(html),
     private: /["\s]+privateOffer[":\s]+true/.test(html),
     deposit: getText($page('.is24qa-kaution-o-genossenschaftsanteile')),
     address: getText($page('.address-block').first()),
-    coldRent: getText($page('.is24qa-kaltmiete').first()),
-    totalRent: getText($page('.is24qa-gesamtmiete')),
+    coldRent: getNumber($page('.is24qa-kaltmiete').first()),
+    totalRent: getNumber($page('.is24qa-gesamtmiete')),
     bathRooms: getText($page('.is24qa-badezimmer')),
     description: getText($page('.is24qa-objektbeschreibung')),
-    livingSpace: getText($page('.is24qa-flaeche')),
+    livingSpace: getNumber($page('.is24qa-flaeche')),
     heatingType: getText($page('.is24qa-heizungsart')),
-    utilityCosts: getText($page('.is24qa-nebenkosten')),
+    utilityCosts: getNumber($page('.is24qa-nebenkosten')),
     heatingCosts: getText($page('.is24qa-heizkosten')),
     aparmentState: getText($page('.is24qa-objektzustand.grid-item')),
     availableFrom: getText($page('.is24qa-bezugsfrei-ab')),

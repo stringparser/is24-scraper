@@ -40,8 +40,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var cheerio_1 = __importDefault(require("cheerio"));
 var node_fetch_1 = __importDefault(require("node-fetch"));
-var util_1 = require("./util");
 var constants_1 = require("./constants");
+var util_1 = require("./util");
 function is24ListScraper(listURL, options) {
     return __awaiter(this, void 0, void 0, function () {
         var _this = this;
@@ -116,16 +116,17 @@ function getItemProps(url, $page, html) {
         images: $page('#is24-main .sp-slide img.sp-image')
             .toArray()
             .map(function (el) { return cheerio_1.default(el).attr('data-src'); }),
+        quarter: util_1.getQuarter(html),
         private: /["\s]+privateOffer[":\s]+true/.test(html),
         deposit: util_1.getText($page('.is24qa-kaution-o-genossenschaftsanteile')),
         address: util_1.getText($page('.address-block').first()),
-        coldRent: util_1.getText($page('.is24qa-kaltmiete').first()),
-        totalRent: util_1.getText($page('.is24qa-gesamtmiete')),
+        coldRent: util_1.getNumber($page('.is24qa-kaltmiete').first()),
+        totalRent: util_1.getNumber($page('.is24qa-gesamtmiete')),
         bathRooms: util_1.getText($page('.is24qa-badezimmer')),
         description: util_1.getText($page('.is24qa-objektbeschreibung')),
-        livingSpace: util_1.getText($page('.is24qa-flaeche')),
+        livingSpace: util_1.getNumber($page('.is24qa-flaeche')),
         heatingType: util_1.getText($page('.is24qa-heizungsart')),
-        utilityCosts: util_1.getText($page('.is24qa-nebenkosten')),
+        utilityCosts: util_1.getNumber($page('.is24qa-nebenkosten')),
         heatingCosts: util_1.getText($page('.is24qa-heizkosten')),
         aparmentState: util_1.getText($page('.is24qa-objektzustand.grid-item')),
         availableFrom: util_1.getText($page('.is24qa-bezugsfrei-ab')),

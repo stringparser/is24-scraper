@@ -9,13 +9,13 @@ export declare type ResultListItem = {
     private: boolean;
     deposit: string;
     address: string;
-    coldRent: string;
-    totalRent: string;
+    coldRent: number;
+    totalRent: number;
     bathRooms: string;
     description: string;
-    livingSpace: string;
+    livingSpace: number;
     heatingType: string;
-    utilityCosts: string;
+    utilityCosts: number;
     heatingCosts: string;
     aparmentState: string;
     availableFrom: string;
